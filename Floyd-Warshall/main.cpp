@@ -65,13 +65,22 @@ bool FW(CGraph& g) {
     }
     
     g.setMatrix(distanceMatrix, predecessorIndexMatrix);
+    
+    bool freeOfNegativeCycles = true;
+    for (int i = 0; i < g.getNodeCounter(); i++) {
+        if (distanceMatrix[i][i] < 0) {
+            freeOfNegativeCycles = false;
+            break;
+        }
+    }
+    
     for (int i = 0; i < g.getNodeCounter(); i++) {
         delete [] distanceMatrix[i];
         delete [] predecessorIndexMatrix[i];
     }
     delete [] distanceMatrix;
     delete [] predecessorIndexMatrix;
-    return true;
+    return freeOfNegativeCycles;
 }
 
 #ifndef __PROGTEST__
