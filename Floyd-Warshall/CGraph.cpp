@@ -13,12 +13,12 @@ using namespace std;
 
 ostream& operator<<(ostream& os, const CGraph & graph) {
 	os << "Graph: " << endl;
-	for (int i = 1; i <= graph.getNodeCounter(); ++i) {
-		os << graph.getNode(i) << endl;
-	}
-	for (int i = 1; i <= graph.getEdgeCounter(); ++i) {
-		os << graph.getEdge(i) << endl;
-	}
+	for (int i = 0; i < graph.getNodeCounter(); i++) {
+        for (int j = 0; j < graph.getNodeCounter(); j++) {
+            cout << graph.distanceMatrix[i][j] << "(" << graph.predecessorIndexMatrix[i][j] << ") ";
+        }
+        cout << endl;
+    }
 	return os;
 }
 
@@ -56,4 +56,17 @@ void CGraph::setNode(const int index, const t_node& node) {
 
 void CGraph::addNode(const t_node& node) {
     nodes.push_back(node);
+}
+
+void CGraph::setMatrix(int** distanceMatrix, int** predecessorIndexMatrix) {
+    this->distanceMatrix = new int*[getNodeCounter()];
+    this->predecessorIndexMatrix = new int*[getNodeCounter()];
+    for (int i = 0; i < getNodeCounter(); i++) {
+        this->distanceMatrix[i] = new int[getNodeCounter()];
+        this->predecessorIndexMatrix[i] = new int[getNodeCounter()];
+        for (int j = 0; j < getNodeCounter(); j++) {
+            this->distanceMatrix[i][j] = distanceMatrix[i][j];
+            this->predecessorIndexMatrix[i][j] = predecessorIndexMatrix[i][j];
+        }
+    }
 }

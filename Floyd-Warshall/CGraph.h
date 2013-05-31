@@ -16,6 +16,8 @@
 class CGraph {
     vector<t_node> nodes;
 	vector<t_edge> edges;
+    int** distanceMatrix;
+    int** predecessorIndexMatrix;
 public:
     int getEdgeCounter() const;
     t_edge& getEdge(const int index) const;
@@ -27,6 +29,7 @@ public:
     void setNode(const int index, const t_node& node);
     void addNode(const t_node& node);
     friend ostream& operator<<(ostream& os, const CGraph & graph);
+    void setMatrix(int** distanceMatrix, int** predecessorIndexMatrix);
 };
 
 #endif /* defined(__JarnikPrim__CGraph__) */

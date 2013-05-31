@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		B4EF90BD1758AB9D000657FC /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4EF90BC1758AB9D000657FC /* main.cpp */; };
-		B4EF90BF1758AB9D000657FC /* Floyd_Warshall.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = B4EF90BE1758AB9D000657FC /* Floyd_Warshall.1 */; };
 		B4EF90CB1758ABC6000657FC /* CGraph.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4EF90C51758ABC6000657FC /* CGraph.cpp */; };
 		B4EF90CC1758ABC6000657FC /* t_edge.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4EF90C71758ABC6000657FC /* t_edge.cpp */; };
 		B4EF90CD1758ABC6000657FC /* t_node.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4EF90C91758ABC6000657FC /* t_node.cpp */; };
@@ -21,7 +20,6 @@
 			dstPath = /usr/share/man/man1/;
 			dstSubfolderSpec = 0;
 			files = (
-				B4EF90BF1758AB9D000657FC /* Floyd_Warshall.1 in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 		};
@@ -30,7 +28,6 @@
 /* Begin PBXFileReference section */
 		B4EF90B91758AB9D000657FC /* Floyd-Warshall */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Floyd-Warshall"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4EF90BC1758AB9D000657FC /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
-		B4EF90BE1758AB9D000657FC /* Floyd_Warshall.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = Floyd_Warshall.1; sourceTree = "<group>"; };
 		B4EF90C51758ABC6000657FC /* CGraph.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CGraph.cpp; sourceTree = "<group>"; };
 		B4EF90C61758ABC6000657FC /* CGraph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGraph.h; sourceTree = "<group>"; };
 		B4EF90C71758ABC6000657FC /* t_edge.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = t_edge.cpp; sourceTree = "<group>"; };
@@ -76,7 +73,6 @@
 				B4EF90C91758ABC6000657FC /* t_node.cpp */,
 				B4EF90CA1758ABC6000657FC /* t_node.h */,
 				B4EF90BC1758AB9D000657FC /* main.cpp */,
-				B4EF90BE1758AB9D000657FC /* Floyd_Warshall.1 */,
 			);
 			path = "Floyd-Warshall";
 			sourceTree = "<group>";
@@ -234,6 +230,7 @@
 				B4EF90C41758AB9D000657FC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
