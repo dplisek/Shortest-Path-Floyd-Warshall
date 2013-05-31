@@ -65,6 +65,12 @@ bool FW(CGraph& g) {
     }
     
     g.setMatrix(distanceMatrix, predecessorIndexMatrix);
+    for (int i = 0; i < g.getNodeCounter(); i++) {
+        delete [] distanceMatrix[i];
+        delete [] predecessorIndexMatrix[i];
+    }
+    delete [] distanceMatrix;
+    delete [] predecessorIndexMatrix;
     return true;
 }
 
