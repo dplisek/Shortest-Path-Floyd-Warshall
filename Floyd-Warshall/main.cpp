@@ -7,7 +7,10 @@
 //
 
 #include <iostream>
+
+#ifndef __PROGTEST__
 #include "CGraph.h"
+#endif
 
 #define INF 9999
 
@@ -65,6 +68,8 @@ bool FW(CGraph& g) {
     return true;
 }
 
+#ifndef __PROGTEST__
+
 int main(int argc, const char * argv[])
 {
     CGraph *g = new CGraph;
@@ -111,3 +116,4 @@ int main(int argc, const char * argv[])
     return 0;
 }
 
+#endif
