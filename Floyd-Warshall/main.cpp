@@ -9,18 +9,60 @@
 #include <iostream>
 #include "CGraph.h"
 
-int** allocMatrix(int size) {
-    int** matrix = new int*[size];
+#define INF 9999
+
+int** allocDistanceMatrix(int size) {
+    int** distanceMatrix = new int*[size];
     for (int i = 0; i < size; i++) {
-        matrix[i] = new int[size];
+        distanceMatrix[i] = new int[size];
+        for (int j = 0; j < size; j++) {
+            if (i == j) {
+                distanceMatrix[i][j] = 0;
+            } else {
+                distanceMatrix[i][j] = INF;
+            }
+        }
     }
-    return matrix;
+    return distanceMatrix;
+}
+
+int** allocPredecessorIndexMatrix(int size) {
+    int** predecessorIndexMatrix = new int*[size];
+    for (int i = 0; i < size; i++) {
+        predecessorIndexMatrix[i] = new int[size];
+        for (int j = 0; j < size; j++) {
+            predecessorIndexMatrix[i][j] = 0;
+        }
+    }
+    return predecessorIndexMatrix;
+}
+
+void fillMatricesFromGraph(int*** distanceMatrix, int*** predecessorIndexMatrix, CGraph& g) {
+    for (int i = 1; i <= g.getEdgeCounter(); i++) {
+        t_edge e = g.getEdge(i);
+        (*distanceMatrix)[e.sourceIndex - 1][e.destinationIndex - 1] = e.value;
+        (*predecessorIndexMatrix)[e.sourceIndex - 1][e.destinationIndex - 1] = e.sourceIndex;
+    }
 }
 
 bool FW(CGraph& g) {
-    int** distanceMatrix = allocMatrix(g.getNodeCounter());
-    int** predecessorIndexMatrix = allocMatrix(g.getNodeCounter());
+    int** distanceMatrix = allocDistanceMatrix(g.getNodeCounter());
+    int** predecessorIndexMatrix = allocPredecessorIndexMatrix(g.getNodeCounter());
+    fillMatricesFromGraph(&distanceMatrix, &predecessorIndexMatrix, g);
+    for (int k = 0; k < g.getNodeCounter(); k++) {
+        for (int i = 0; i < g.getNodeCounter(); i++) {
+            for (int j = 0; j < g.getNodeCounter(); j++) {
+                if (distanceMatrix[i][k] == INF || distanceMatrix[k][j] == INF) continue;
+                if (distanceMatrix[i][j] > distanceMatrix[i][k] + distanceMatrix[k][j]) {
+                    distanceMatrix[i][j] = distanceMatrix[i][k] + distanceMatrix[k][j];
+                    predecessorIndexMatrix[i][j] = predecessorIndexMatrix[k][j];
+                }
+            }
+        }
+    }
     
+    g.setMatrix(distanceMatrix, predecessorIndexMatrix);
+    return true;
 }
 
 int main(int argc, const char * argv[])
@@ -39,37 +81,27 @@ int main(int argc, const char * argv[])
     g->addNode(node4);
     g->addNode(node5);
     
-    t_edge edge1(1, 1, 0);
     t_edge edge2(1, 2, 3);
     t_edge edge3(1, 3, 6);
-    t_edge edge4(2, 2, 0);
     t_edge edge5(2, 3, 2);
     t_edge edge6(2, 4, 6);
-    t_edge edge7(3, 3, 0);
     t_edge edge8(3, 4, -3);
     t_edge edge9(4, 1, 1);
-    t_edge edge10(4, 4, 0);
     t_edge edge11(4, 5, 1);
     t_edge edge12(5, 1, -2);
     t_edge edge13(5, 2, 3);
     t_edge edge14(5, 3, 4);
-    t_edge edge15(5, 5, 0);
     
-    g->addEdge(edge1);
     g->addEdge(edge2);
     g->addEdge(edge3);
-    g->addEdge(edge4);
     g->addEdge(edge5);
     g->addEdge(edge6);
-    g->addEdge(edge7);
     g->addEdge(edge8);
     g->addEdge(edge9);
-    g->addEdge(edge10);
     g->addEdge(edge11);
     g->addEdge(edge12);
     g->addEdge(edge13);
     g->addEdge(edge14);
-    g->addEdge(edge15);
     
     FW(*g);
     
